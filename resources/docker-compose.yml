@@ -1,0 +1,137 @@
+
+networks: 
+  network-eureka:
+  network-elk:
+services: 
+  realmepaysa-eureka-service: 
+    build: 
+      context: ./code/realmepaysa-eureka-service
+      dockerfile: Dockerfile
+    container_name: realmepaysa-eureka-service
+    environment: 
+      - PORT=9526
+      - "JAVA_OPTIONS= -Xmx600m -Djava.security.egd=file:/dev/./urandom"
+    image: 127.0.0.1:5000/realmepaysa-eureka-service
+    networks: 
+      - network-eureka
+    ports: 
+      - "9526:8001"
+    restart: always
+  realmepaysa-leadcreation-service: 
+    build: 
+      context: ./code/realmepaysa-leadcreation-service
+      dockerfile: Dockerfile
+    container_name: realmepaysa-leadcreation-service
+    depends_on: 
+      - realmepaysa-eureka-service
+      - realmepaysadb
+    environment: 
+      - REGISTRY_HOST=realmepaysa-eureka-service
+      - ZUUL_HOST=realmepaysa-zuul-service
+      - ZUUL_PORT=4444
+      - PORT=3331
+      - "SPRING_DATASOURCE_URL=jdbc:mysql://realmepaysadb/realmepaysa?useSSL=false&allowPublicKeyRetrieval=true"
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=govinda@123
+      - "JAVA_OPTIONS= -Xmx600m -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=development"
+    image: 127.0.0.1:5000/realmepaysa-leadcreation-service
+    networks: 
+      - network-eureka
+    ports: 
+      - "3331:3331"
+    restart: on-failure
+    volumes: 
+      - realmepaysa:/root/files
+  realmepaysa-zuul-service: 
+    build: 
+      context: ./code/realmepaysa-zuul-service
+      dockerfile: Dockerfile
+    container_name: realmepaysa-zuul-service
+    depends_on: 
+      - realmepaysa-eureka-service
+    environment: 
+      - REGISTRY_HOST=realmepaysa-eureka-service
+      - PORT=4444
+      - "JAVA_OPTIONS= -Xmx600m -Djava.security.egd=file:/dev/./urandom -Dspring.profiles.active=development"
+    image: 127.0.0.1:5000/realmepaysa-zuul-service
+    networks: 
+      - network-eureka
+    ports: 
+      - "4444:2222"
+    restart: always
+    volumes: 
+      - zuul:/root/files
+      
+  elasticsearch:
+    image: "docker.elastic.co/elasticsearch/elasticsearch:7.7.0"
+    container_name: elasticsearch
+    environment:
+      - "ES_JAVA_OPTS=-Xms1g -Xmx1g"
+      - "discovery.type=single-node"
+    ports:
+      - "9200:9200"
+    volumes:
+      - elasticsearch_data:/usr/share/elasticsearch/data
+    networks:
+      - network-elk
+      
+#  kibana:
+#    image: "docker.elastic.co/kibana/kibana:7.7.0"
+#    ports:
+#      - "5601:5601"
+#    depends_on:
+#      - logstash
+#    networks:
+#      - network-elk
+#  
+#  logstash:
+#    image: docker.elastic.co/logstash/logstash:7.7.0
+#    ports:
+#      - "9600:9600"
+#    command: logstash -f /etc/logstash/conf.d/logstash.conf
+#    volumes:
+#      - ./code/logstash/logstash.conf:/etc/logstash/conf.d
+#    depends_on:
+#      - filebeat
+#    environment:
+#      LS_JAVA_OPTS: "-Xmx256m -Xms256m"
+#    networks:
+#      - network-elk
+#    
+#
+#  filebeat:
+#    image: "docker.elastic.co/beats/filebeat:7.7.1"
+#    user: root
+#    volumes:
+#      - ./code/filebeats/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+#      - /var/lib/docker:/var/lib/docker:ro
+#      - /var/run/docker.sock:/var/run/docker.sock
+#    networks:
+#      - networks-elk
+#      - network-eureka
+      
+  realmepaysadb: 
+    environment:    
+      - MYSQL_ROOT_PASSWORD=govinda@123
+      - MYSQL_USER=root
+      - MYSQL_PASSWORD=govinda@123
+      - MYSQL_DATABASE=realmepaysa
+      - MYSQL_ONETIME_PASSWORD=true
+    expose: 
+      - "5200"
+    image: "mysql:8"
+    networks: 
+      - network-eureka
+    ports: 
+      - "5200:3306"
+    restart: always
+    volumes: 
+      - my-db:/var/lib/mysql
+      - ./mysql-init:/docker-entrypoint-initdb.d
+      - ./logs/mysql:/var/log/mysql
+version: "3.7"
+volumes: 
+  my-db: 
+  realmepaysa: 
+  zuul:
+  elasticsearch_data: 
