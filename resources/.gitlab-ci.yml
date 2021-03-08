@@ -1,0 +1,11 @@
+realme-dev-deploy:
+  environment: development
+  script:
+    - docker-compose build
+    - docker-compose push
+    - docker-compose up -d
+
+  tags: ["realmepaysawebsite"]
+
+  only:
+    - dev

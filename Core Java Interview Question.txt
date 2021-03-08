@@ -1,0 +1,72 @@
+1. HashMap vs HashTable
+2. HashSet vs HashMap
+3. ArrayList vs HashMap
+4. ArrayList vs Vector
+5. ArrayList vs Array
+6. who maintains insertion order? ArrayList or Array => Both
+7. who maintain sorting in SortedSet?                => TreeSet  
+8. can Hashmap contain null value/duplicate value?    => Yes
+9. Retrieval of the element is faster in LinkedList or HashMap 
+10.how hashMap insert data?
+11.why the map interface is different from other interfaces in the collection
+12.which method sort the element?
+13.How to create multiple threads without using Executorservice?
+14.how to create a thread
+15.what are the methods in thread class
+16.join() vs sleep()
+17.Thread life cycle
+18.equals() vs ==
+19.OOPS Concept OR with example 
+20.what is abstraction/Polymorphism/Inheritance with example(real world)?
+21.method overloading vs method overriding
+22.Access modifier/Specifier in java Explain
+23.super() vs this() methods
+24.Explain Polymorphism? Runtime Polymorphism vs CompileTime Polymorphism
+25.extends vs implements keyword
+26.Abstract vs interface
+27.static vs non-static content/block
+28.Serialization and transient keyword
+29.ConcurrentHashMapException
+30.final vs Finally vs finalize
+31.how to make finally block conditional
+32.Explain try catch finally block
+33.why  use finally block
+34.More efficient way/another way to implement try-catch-finally? 
+35.How many way string object can be created
+36.Explain Exception
+37.throw vs throws keyword
+38.how to throw multiple exceptions
+39.can we override the main method?
+40.Explain any of the Java 8 features
+41.lambda expression,functional interface
+42.DAO class explain
+43.What is POJO Class
+44.execute() vs executeQuery()
+45.What is refection
+46.JsonNode
+47.Spring vs Spring MVC vs Spring Boot
+48.@Component,@ComponentScan
+49.Hibernate interface name them and explain
+50.hibernate entity life cycle
+51.Why hibernate is use and how?
+52. What is JdbcTemplate
+53. D/B Statement vs PreparedStatement
+54. How to call a procedure from backend
+55. What is callable statement
+56. What is bean and how it is managed/configured?
+57. String buffer vs String builder
+58. How to make arraylist synchronized w/o collections method
+59. Why do we need constructor in abstract class
+60. What are marker interface?and type?
+61. What is dependency injection and type?
+62. D/B @PathVariable and @RequestParam
+63. What are Rest Api and Explain/RestApi methods?
+64. D/B @RestController vs @Controller
+65. What is @RequestBody
+66. What is SerialVersionUID
+67. What is Stream Api? Name them
+68. Explain internal Working of HashSet/HashMap?
+69. what is hashcode() and equals() methods?
+70. where does maven dependencies get stored in local machine OR What you used for Building the Application?(Maven/Gradle)
+
+
