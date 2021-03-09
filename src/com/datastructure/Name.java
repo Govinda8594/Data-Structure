@@ -30,12 +30,12 @@ public class Name {
 		if (firstName == null) {
 			if (other.firstName != null)
 				return false;
-		} else if (firstName.toLowerCase().equals(other.firstName.toLowerCase()))
+		} else if (!firstName.equals(other.firstName))
 			return true;
 		if (lastName == null) {
 			if (other.lastName != null)
 				return false;
-		} else if (lastName.toLowerCase().equals(other.lastName.toLowerCase()))
+		} else if (!lastName.equals(other.lastName))
 			return true;
 		return false;
 		
