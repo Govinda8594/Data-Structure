@@ -1,0 +1,59 @@
+Tree => tree are data structure which store data in hierarchial order
+=>tree used => Represent hierarchicial data
+			=> Databases
+			=> Autocompletion
+			=> Compilers
+			=> Compression(JPE,MP3)
+			=>lookup  O(log n)
+			=>insert O(log n)
+			=>delete O(log n)
+Breath first search => level order traversal
+Depth first search => Preorder/Inorder/postorder traversal
+		PreOrder   => root -> left -> right (NLR)
+		InOrder    => left -> root -> right (LNR)
+		PostOrder  => left -> right -> root (LRN)
+
+Height of tree/height of root node(start from bottom) => longest path from leaves to root node => postorder in action
+Height of node(start from bottom) => longest path from leave to that node
+  formula => 1 + max(height(left),height(right))
+Depth of node(start from top) => Number of edges from root to that node 
+Two tree are equals => Preorder in action
+
+
+AVL Tree => to make unbalanced tree to balanced tree/self-balancin tree
+         => Rotation type
+         				=> LL rotation
+         				=> RR rotation
+         				=> LR rotation
+         				=> RL rotation
+         => Balance Factor = heigth(left)  - height(right)
+                    > 1 => left heavy
+                    < -1 => right heavy   
+   		=> BST    => Average O(long n)
+   				  => worst O(n)	  
+   				  
+ Heap => Complete tree => level should be filled from left to right
+      => Value of every node is greater than or equal to root node
+      => heap tree is complete binary tree which satisfy heap property
+Binary Heap      => max heap => root node have maxmium value
+      			 => min heap => root node have minimum value 
+      			 
+Tries => Not a binary tree => used for reterival => called digital/radix/prefix
+	  =>Lookup O(L) => L => Length of the word
+	  => insert => O(L)
+	  => delete => O(L)
+Graph => Graph are tree with cycle/to represent connected objects
+	  => can have direct/undirect connection 	
+Adjcent Matrix	  => virtices =>add Node => O(v^2) => remove Node=>O(v^2) =>find => O(v)
+				  => edges	  => add edges => O(1) => remove edges => O(1)	=>find =>O(1) 	
+			      =>spaces => O(v^2)
+Adjcency List => store in Array of linked list
+			  => space =>O(v+E)	
+			  => add list => O(1)
+			  => Edges => add=> O(k);remove => O(k);find => O(k) 
+Traversal => BSF/DFS
+
+Weighted Graph =>	
+Prim's alorithm =>	 Extend the tree by adding the smallest connected edge	
+			  		     				
+      			     				
